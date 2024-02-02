@@ -1,63 +1,48 @@
 ---
-name: Maintenance Page
-slug: maintenance-page
-description: This template shows how to quickly trigger a maintenance page using Edge Config
+name: Next14 Edge Redirect
+slug: edge-redirect
+description: This is a very simple app that allows you to use Vercel's Edge to redirect all traffic from a domain to another URL.
 framework: Next.js
 useCase:
   - Edge Middleware
   - Edge Config
 css: Tailwind
-deployUrl: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%22isInMaintenanceMode%22%3Atrue%7D%7D'
-demoUrl: https://edge-maintenance-page.vercel.app/
 relatedTemplates:
   - feature-flag-apple-store
   - nextjs-boilerplate
 ---
 
-# maintenance-page example
+# Next14 Edge Redirect
 
-This example shows how to implement a maintenance page on the edge
+This example demonstrates how to use Vercel's Edge functionality to easily redirect all incoming traffic from a domain to a different URL of your choice.
 
-## Demo
+## Usage
 
-https://edge-maintenance-page.vercel.app
+If you prefer to set up the redirection app manually, you can follow these steps:
 
-## How to Use
+1. Clone this repository.
 
-You can choose from one of the following two methods to use this repository:
+2. Change to the project directory.
 
-### One-Click Deploy
+3. Set up environment variables:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+   - Copy the .env.example file in this directory to .env.local.
+   - This example requires you to set up an Edge Config and store its connection string in the EDGE_CONFIG environment variable.
+   - Fill the Edge Config you create with this content:
+     ```json
+     { "isInMaintenanceMode": true }
+     ```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/maintenance-page&project-name=maintenance-page&repository-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%22isInMaintenanceMode%22%3Atrue%7D%7D)
+4. Run the app in development mode:
 
-### Clone and Deploy
+   - Use the command: `pnpm dev`
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+5. Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-redirect) ([Documentation](https://nextjs.org/docs/deployment)).
 
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/maintenance-page
-```
+### Customizing the Redirect
 
-#### Set up environment variables
+To customize the redirection destination, modify the middleware.ts file. By default, it redirects all traffic to "https://linktr.ee/austinai". You can change the destination URL by editing this file.
 
-Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+Please note that this is a simple app designed for domain redirection. The only file you need to modify is middleware.ts to specify the target URL you want to redirect to.
 
-```bash
-cp .env.example .env.local
-```
-
-This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable. Fill the Edge Config you create with this content:
-
-```json
-{ "isInMaintenanceMode": true }
-```
-
-Next, run Next.js in development mode:
-
-```bash
-pnpm dev
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Feel free to reach out if you have any questions or need further assistance!
